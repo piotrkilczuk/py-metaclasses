@@ -1,0 +1,2 @@
+class SimplestPossibleClass(object):
+    pass
