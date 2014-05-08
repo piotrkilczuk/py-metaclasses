@@ -13,6 +13,10 @@ class FieldsMeta(type):
         new_dct['fields'] = {k: v for k, v in dct.items() if not (k.startswith('__') and k.endswith('__'))}
         return super(FieldsMeta, cls).__new__(cls, name, bases, new_dct)
 
+    def __call__(cls, data={}):
+        cls.data = data
+        return cls
+
 
 class SimpleForm(metaclass=FieldsMeta):
 

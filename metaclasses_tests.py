@@ -8,11 +8,21 @@ from metaclasses import *
 class FieldsMetaTestCase(TestCase):
 
     def test_dct_altered(self):
+        """
+        Class attributes should be moved to field attribute, which is a dictionary
+        """
         form = SimpleForm()
         self.assertEqual(form.fields, {
             'field1': sentinel.field1,
             'field2': sentinel.field2,
         })
+
+    def test_init_kwargs_moved_to_data(self):
+        """
+        When creating new class instance, args should be written to data attribute
+        """
+        form = SimpleForm(sentinel.simple_form_data)
+        self.assertEqual(form.data, sentinel.simple_form_data)
 
 
 class SimplestPossibleTestCase(TestCase):
